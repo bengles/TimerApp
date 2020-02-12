@@ -17,30 +17,36 @@ namespace TimerApp
             {
                 Text = "Trigger timer!",
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
-                VerticalOptions = LayoutOptions.CenterAndExpand,
-                HorizontalOptions = LayoutOptions.Center
+                Padding = new Thickness(10, 10),
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.Center,
+                HorizontalTextAlignment = TextAlignment.Center
             };
 
             triggerCountEntry = new Entry
             {
                 Text = "How many times?",
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Entry)),
-                VerticalOptions = LayoutOptions.CenterAndExpand,
+                VerticalOptions = LayoutOptions.Start,
                 HorizontalOptions = LayoutOptions.Center,
+                HorizontalTextAlignment = TextAlignment.Center
             };
+            triggerCountEntry.Focused += OnFocusedEntry;
 
             secondsEntry = new Entry
             {
                 Text = "Every second?",
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Entry)),
-                VerticalOptions = LayoutOptions.CenterAndExpand,
+                VerticalOptions = LayoutOptions.Start,
                 HorizontalOptions = LayoutOptions.Center,
+                HorizontalTextAlignment = TextAlignment.Center
             };
+            secondsEntry.Focused += OnFocusedEntry;
 
             Button button = new Button
             {
                 Text = "Start",
-                VerticalOptions = LayoutOptions.CenterAndExpand,
+                VerticalOptions = LayoutOptions.Start,
                 HorizontalOptions = LayoutOptions.Center
             };
             button.Clicked += OnButtonClicked;
@@ -55,8 +61,11 @@ namespace TimerApp
                     button
                 }
             };
+        }
 
-            System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+        private void OnFocusedEntry(object sender, EventArgs e) {
+            Entry entry = (Entry)sender;
+            entry.Text = "";
         }
 
         private void OnButtonClicked(object sender, EventArgs e)
