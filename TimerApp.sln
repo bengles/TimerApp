@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimerApp.Android", "TimerAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimerApp.iOS", "TimerApp.iOS\TimerApp.iOS.csproj", "{6F440479-AB04-4771-8AE4-BFDEEFE27C07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimerApp", "TimerApp\TimerApp.csproj", "{54DDB3FE-9A1F-4942-90D4-FB601EDCDD71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimerApp", "TimerApp\TimerApp.csproj", "{54DDB3FE-9A1F-4942-90D4-FB601EDCDD71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

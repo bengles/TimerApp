@@ -10,7 +10,7 @@ namespace TimerApp
         {
             InitializeComponent();
 
-            MainPage = new TimerPage();
+            MainPage = new Views.TimerPage();
         }
     }
 }

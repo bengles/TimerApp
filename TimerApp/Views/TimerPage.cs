@@ -20,7 +20,7 @@ namespace TimerApp
                 Padding = new Thickness(10, 10),
                 VerticalOptions = LayoutOptions.Start,
                 HorizontalOptions = LayoutOptions.Center,
-                HorizontalTextAlignment = TextAlignment.Center
+                HorizontalTextAlignment = TextAlignment.Center,
             };
 
             triggerCountEntry = new Entry
