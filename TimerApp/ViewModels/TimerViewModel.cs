@@ -4,11 +4,28 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin;
 using System.ComponentModel;
+using TimerApp.Models;
+using System.Windows.Input;
 
 namespace TimerApp.ViewModels
 {
-    internal class TimerViewModel : INotifyPropertyChanged
+    internal class TimerInputViewModel : INotifyPropertyChanged
     {
+        private TimerModel timerModel;
+
+        public ICommand StartCommand { private set; get; }
+
+        public TimerInputViewModel(
+            string title,
+            TimerModel timerModel,
+            Action onStartTimer
+        ) {
+            this.timerModel = timerModel;
+
+            Title = title;
+
+            StartCommand = new Command(onStartTimer);
+        }
 
         #region Properties
         private string title;
@@ -21,13 +38,13 @@ namespace TimerApp.ViewModels
         }
 
         public string Times {
-            get;
-            set;
+            get { return timerModel.times.ToString(); }
+            set { timerModel.times = float.TryParse(value, out float fValue) ? fValue : 0f; }
         }
 
         public string Interval {
-            get;
-            set;
+            get { return timerModel.interval.ToString(); }
+            set { timerModel.interval = float.TryParse(value, out float fValue) ? fValue : 0f; }
         }
 
         public bool Start {
@@ -37,10 +54,5 @@ namespace TimerApp.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
-
-        public TimerViewModel()
-        {
-            Title = "Trigger Timer!";
-        }
     }
 }

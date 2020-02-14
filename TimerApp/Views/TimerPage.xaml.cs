@@ -4,12 +4,16 @@ using Xamarin.Forms.Xaml;
 namespace TimerApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TimerPage : ContentPage
+    public partial class TimerInputPage : ContentPage
     {
-        public TimerPage()
+        public TimerInputPage(
+            string title, 
+            Models.TimerModel timerModel,
+            System.Action onStartTimer
+        )
         {
             InitializeComponent();
-            BindingContext = new ViewModels.TimerViewModel();
+            BindingContext = new ViewModels.TimerInputViewModel(title, timerModel, onStartTimer);
         }
     }
 }

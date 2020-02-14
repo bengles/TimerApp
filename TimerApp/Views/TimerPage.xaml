@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="TimerApp.Views.TimerPage">
+             x:Class="TimerApp.Views.TimerInputPage">
     <ContentPage.Content>
         <StackLayout Padding="50">
             <Label 
@@ -30,7 +30,7 @@
                 Text="Start"
                 VerticalOptions="Start"
                 HorizontalOptions="Center"
-                />
+                Command="{Binding StartCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
