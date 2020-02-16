@@ -8,23 +8,39 @@
     <ContentPage.Content>
         <StackLayout Padding="50">
             <Label 
-                Text="{Binding Title}"
+                Text="Exercise settings"
                 FontSize="Large"
                 VerticalOptions="Start" 
-                HorizontalOptions="Center"/>
-            <Entry 
-                Text="{Binding Times}"
-                FontSize="Small"
-                VerticalOptions="Start"
                 HorizontalOptions="Center"
-                Placeholder="How many times?"
+                Padding="50"
                 />
             <Entry 
-                Text="{Binding Interval}"
+                Text="{Binding Repetitions}"
                 FontSize="Small"
                 VerticalOptions="Start"
                 HorizontalOptions="Center"
-                Placeholder="Interval length?"
+                Placeholder="Repetitions"
+                />
+            <Entry 
+                Text="{Binding ExcentricDuration}"
+                FontSize="Small"
+                VerticalOptions="Start"
+                HorizontalOptions="Center"
+                Placeholder="Excentric duration"
+                />
+            <Entry 
+                Text="{Binding ConcentricDuration}"
+                FontSize="Small"
+                VerticalOptions="Start"
+                HorizontalOptions="Center"
+                Placeholder="Concentric duration"
+                />
+            <Entry 
+                Text="{Binding PauseDuration}"
+                FontSize="Small"
+                VerticalOptions="Start"
+                HorizontalOptions="Center"
+                Placeholder="Pause duration"
                 />
             <Button 
                 Text="Start"

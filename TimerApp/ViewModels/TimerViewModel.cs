@@ -32,14 +32,25 @@ namespace TimerApp.ViewModels
             }
         }
 
-        public string Times {
-            get { return timerModel.times.ToString(); }
-            set { timerModel.times = float.TryParse(value, out float fValue) ? fValue : 0f; }
+        public string Repetitions {
+            get { return timerModel.repetitions.ToString(); }
+            set { timerModel.repetitions = int.TryParse(value, out int intValue) ? intValue : 0; }
         }
 
-        public string Interval {
-            get { return timerModel.interval.ToString(); }
-            set { timerModel.interval = float.TryParse(value, out float fValue) ? fValue : 0f; }
+        public string ExcentricDuration {
+            get { return timerModel.excentricDuration.ToString(); }
+            set { timerModel.excentricDuration = float.TryParse(value, out float fValue) ? fValue : 0f; }
+        }
+
+        public string ConcentricDuration {
+            get { return timerModel.concentricDuration.ToString(); }
+            set { timerModel.concentricDuration = float.TryParse(value, out float fValue) ? fValue : 0f; }
+        }
+
+        public string PauseDuration
+        {
+            get { return timerModel.pauseDuration.ToString(); }
+            set { timerModel.pauseDuration = float.TryParse(value, out float fValue) ? fValue : 0f; }
         }
 
         public bool Start {

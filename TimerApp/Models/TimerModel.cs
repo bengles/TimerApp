@@ -2,7 +2,9 @@
 {
     public class TimerModel
     {
-        public float interval;
-        public float times;
+        public float excentricDuration;
+        public float concentricDuration;
+        public float pauseDuration;
+        public int repetitions;
     }
 }
