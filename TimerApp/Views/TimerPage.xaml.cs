@@ -7,13 +7,11 @@ namespace TimerApp.Views
     public partial class TimerInputPage : ContentPage
     {
         public TimerInputPage(
-            string title, 
-            Models.TimerModel timerModel,
-            System.Action onStartTimer
+            ViewModels.TimerInputViewModel viewModel
         )
         {
             InitializeComponent();
-            BindingContext = new ViewModels.TimerInputViewModel(title, timerModel, onStartTimer);
+            BindingContext = viewModel;
         }
     }
 }

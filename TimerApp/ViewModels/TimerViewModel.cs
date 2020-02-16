@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
-using Xamarin;
 using System.ComponentModel;
 using TimerApp.Models;
 using System.Windows.Input;
 
 namespace TimerApp.ViewModels
 {
-    internal class TimerInputViewModel : INotifyPropertyChanged
+    public class TimerInputViewModel : INotifyPropertyChanged
     {
-        private TimerModel timerModel;
-
+        private readonly TimerModel timerModel;
         public ICommand StartCommand { private set; get; }
 
         public TimerInputViewModel(
@@ -20,9 +16,8 @@ namespace TimerApp.ViewModels
             TimerModel timerModel,
             Action onStartTimer
         ) {
-            this.timerModel = timerModel;
-
             Title = title;
+            this.timerModel = timerModel;
 
             StartCommand = new Command(onStartTimer);
         }

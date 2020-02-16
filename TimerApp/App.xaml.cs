@@ -1,6 +1,5 @@
 ﻿using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace TimerApp
 {
@@ -10,27 +9,20 @@ namespace TimerApp
         {
             InitializeComponent();
 
-            MainPage = new Views.TimerInputPage(
-                "Trigger timer!",
-                new Models.TimerModel {
+            var inputViewModel = new ViewModels.TimerInputViewModel(
+                "Trigger time!",
+                new Models.TimerModel
+                {
                     times = 10,
                     interval = 0.2f
                 },
-                OnStartTimer
-            );
+                OnStartTimer);
+
+            MainPage = new Views.TimerInputPage(inputViewModel);
         }
 
-        private async void OnStartTimer() {
-            await MainPage.Navigation.PushModalAsync(
-                new Views.TimerInputPage(
-                    "Second trigger timer!",
-                    new Models.TimerModel { 
-                        times = 1,
-                        interval = 1
-                    },
-                    OnStartTimer
-                )
-            );
+        private void OnStartTimer() {
+            Console.WriteLine("Start timer");
         }
     }
 }
