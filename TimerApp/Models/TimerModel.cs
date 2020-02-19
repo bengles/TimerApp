@@ -6,5 +6,6 @@
         public float concentricDuration;
         public float pauseDuration;
         public int repetitions;
+        public bool startWithExcentric;
     }
 }

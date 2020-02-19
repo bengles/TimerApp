@@ -5,47 +5,109 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="TimerApp.Views.TimerInputPage">
+    <ContentPage.Resources>
+        <Style x:Key="EntryLabel" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource NormalFont}"/>
+            <Setter Property="TextColor" Value="Gray" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="HorizontalTextAlignment" Value="Start"/>
+            <Setter Property="MinimumWidthRequest" Value="140"/>
+            <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+        </Style>
+        <Style x:Key="EntryField" TargetType="Entry">
+            <Setter Property="HorizontalOptions" Value="Fill"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="FontFamily" Value="{StaticResource ItalicFont}"/>
+            <Setter Property="TextColor" Value="Gray" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="HorizontalTextAlignment" Value="Start"/>
+            <Setter Property="WidthRequest" Value="150" />
+            <Setter Property="Margin" Value="5,0,0,0" />
+        </Style>
+        <Style x:Key="EntryStack" TargetType="StackLayout">
+            <Setter Property="Orientation" Value="Horizontal" />
+            <Setter Property="HorizontalOptions" Value="Fill"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+        </Style>
+        <Style x:Key="GenericButton" TargetType="Button">
+            <Setter Property="VerticalOptions" Value="Start"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="HeightRequest" Value="40"/>
+            <Setter Property="WidthRequest" Value="240"/>
+            <Setter Property="FontFamily" Value="{StaticResource NormalFont}"/>
+            <Setter Property="BorderColor" Value="Black" />
+            <Setter Property="Margin" Value="0, 100, 0, 40"/>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Padding="50">
+        <StackLayout Padding="50" Spacing="15">
             <Label 
+                Style="{StaticResource TitleStyle}"
                 Text="Exercise settings"
-                FontSize="Large"
                 VerticalOptions="Start" 
                 HorizontalOptions="Center"
-                Padding="50"
+                Margin="0, 0, 0, 20"
                 />
-            <Entry 
-                Text="{Binding Repetitions}"
-                FontSize="Small"
-                VerticalOptions="Start"
-                HorizontalOptions="Center"
-                Placeholder="Repetitions"
+            <StackLayout Style="{StaticResource EntryStack}">
+                <Label 
+                    Style="{StaticResource EntryLabel}"
+                    Text="Repetitions"
                 />
-            <Entry 
-                Text="{Binding ExcentricDuration}"
-                FontSize="Small"
-                VerticalOptions="Start"
-                HorizontalOptions="Center"
-                Placeholder="Excentric duration"
+                <Entry 
+                    Style="{StaticResource EntryField}"
+                    Text="{Binding Repetitions}"
+                    Placeholder="Enter repetitions"
+                    HorizontalOptions="End"
                 />
-            <Entry 
-                Text="{Binding ConcentricDuration}"
-                FontSize="Small"
-                VerticalOptions="Start"
-                HorizontalOptions="Center"
-                Placeholder="Concentric duration"
+            </StackLayout>
+            <StackLayout Style="{StaticResource EntryStack}">
+                <Label 
+                    Style="{StaticResource EntryLabel}"
+                    Text="Excentric duration"
                 />
-            <Entry 
-                Text="{Binding PauseDuration}"
-                FontSize="Small"
-                VerticalOptions="Start"
-                HorizontalOptions="Center"
-                Placeholder="Pause duration"
+                <Entry 
+                    Style="{StaticResource EntryField}"
+                    Text="{Binding ExcentricDuration}"
+                    Placeholder="Enter excentric duration"
                 />
+            </StackLayout>
+            <StackLayout Style="{StaticResource EntryStack}">
+                <Label 
+                    Style="{StaticResource EntryLabel}"
+                    Text="Concentric duration"
+                />
+                <Entry 
+                    Style="{StaticResource EntryField}"
+                    Text="{Binding ConcentricDuration}"
+                    Placeholder="Enter concentric duration"
+                />
+            </StackLayout>
+            <StackLayout Style="{StaticResource EntryStack}">
+                <Label 
+                    Style="{StaticResource EntryLabel}"
+                    Text="Pause duration"
+                />
+                <Entry 
+                    Style="{StaticResource EntryField}"
+                    Text="{Binding PauseDuration}"
+                    Placeholder="Enter pause duration"
+                />
+            </StackLayout>
+            <StackLayout Style="{StaticResource EntryStack}"
+                         Margin="0, 40, 0, 0">
+                <Label 
+                    Style="{StaticResource EntryLabel}"
+                    Text="Start with excentric?"
+                />
+                <CheckBox 
+                    IsChecked="{Binding StartWithExcentric}"
+                />
+            </StackLayout>
             <Button 
+                Style="{StaticResource GenericButton}"
                 Text="Start"
-                VerticalOptions="Start"
-                HorizontalOptions="Center"
                 Command="{Binding StartCommand}"/>
         </StackLayout>
     </ContentPage.Content>

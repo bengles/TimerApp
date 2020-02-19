@@ -15,13 +15,17 @@ namespace TimerApp.ViewModels
             }
         }
 
-        public string counter;
-        public string Counter {
+        public string CounterText {
+            get { return ((int)(counter + 0.75)).ToString(); }
+        }
+
+        private float counter;
+        public float Counter {
             get { return counter; }
             set
             {
                 counter = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Counter"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CounterText"));
             }
         }
     }

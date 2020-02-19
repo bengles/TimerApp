@@ -5,15 +5,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="TimerApp.Views.CounterPage">
+    <ContentPage.Resources>
+        <Style x:Key="CounterText" TargetType="Label">
+            <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+            <Setter Property="FontSize" Value="200"/>
+            <Setter Property="MinimumWidthRequest" Value="400"/>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Padding="100">
-            <Label Text="{Binding Title}"
+        <StackLayout Padding="50">
+            <Label 
+                Style="{StaticResource TitleStyle}"
+                Text="{Binding Title}"
+                FontSize="50"
                 VerticalOptions="Start" 
                 HorizontalOptions="Center" />
-            <Label Text="{Binding Counter}"
-                   VerticalOptions="Start"
-                   HorizontalOptions="Center" 
-                   FontSize="Large" />
+            <Label 
+                Style="{StaticResource CounterText}"
+                Text="{Binding CounterText}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

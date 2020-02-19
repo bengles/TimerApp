@@ -33,24 +33,53 @@ namespace TimerApp.ViewModels
         }
 
         public string Repetitions {
-            get { return timerModel.repetitions.ToString(); }
+            get { 
+                if (timerModel.repetitions == 0)
+                {
+                    return null;
+                }
+                return timerModel.repetitions.ToString(); 
+            }
             set { timerModel.repetitions = int.TryParse(value, out int intValue) ? intValue : 0; }
         }
 
         public string ExcentricDuration {
-            get { return timerModel.excentricDuration.ToString(); }
+            get {
+                if (timerModel.excentricDuration == 0.0)
+                {
+                    return null;
+                }
+                return timerModel.excentricDuration.ToString(); 
+            }
             set { timerModel.excentricDuration = float.TryParse(value, out float fValue) ? fValue : 0f; }
         }
 
         public string ConcentricDuration {
-            get { return timerModel.concentricDuration.ToString(); }
+            get {
+                if (timerModel.concentricDuration == 0.0)
+                {
+                    return null;
+                }
+                return timerModel.concentricDuration.ToString(); 
+            }
             set { timerModel.concentricDuration = float.TryParse(value, out float fValue) ? fValue : 0f; }
         }
 
         public string PauseDuration
         {
-            get { return timerModel.pauseDuration.ToString(); }
+            get {
+                if (timerModel.pauseDuration == 0.0)
+                {
+                    return null;
+                }
+                return timerModel.pauseDuration.ToString(); 
+            }
             set { timerModel.pauseDuration = float.TryParse(value, out float fValue) ? fValue : 0f; }
+        }
+
+        public bool StartWithExcentric {
+            get { return timerModel.startWithExcentric; }
+            set { timerModel.startWithExcentric = value; }
         }
 
         public bool Start {

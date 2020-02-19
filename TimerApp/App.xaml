@@ -6,6 +6,25 @@
              mc:Ignorable="d"
              x:Class="TimerApp.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:Key="NormalFont" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="OpenSans-Light"/>
+                <On Platform="Android" Value="OpenSans-Light.ttf#Open Sans"/>
+            </OnPlatform>
 
+            <OnPlatform x:Key="ItalicFont" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="OpenSans-LightItalic"/>
+                <On Platform="Android" Value="OpenSans-LightItalic.ttf#Open Sans"/>
+            </OnPlatform>
+
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource NormalFont}"/>
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

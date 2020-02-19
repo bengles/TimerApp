@@ -13,7 +13,8 @@ namespace TimerApp
 
         private int repetitions;
 
-        private enum State { 
+        private enum State
+        {
             Starting,
             Excentric,
             Concentric,
@@ -21,6 +22,8 @@ namespace TimerApp
         }
         private State state;
         private State postPauseState;
+
+        private const float UPDATE_FREQUENCY = 0.1f;
 
         public App()
         {
@@ -40,66 +43,64 @@ namespace TimerApp
             MainPage = inputPage;
         }
 
-        private async void OnStartTimer() {
+        private async void OnStartTimer()
+        {
             counterViewModel.Title = "Starts in..";
-            counterViewModel.Counter = "5";
+            counterViewModel.Counter = 5f;
             repetitions = timerModel.repetitions;
             state = State.Starting;
             await MainPage.Navigation.PushModalAsync(counterPage);
-            Device.StartTimer(TimeSpan.FromSeconds(1), Update);
+            Device.StartTimer(TimeSpan.FromSeconds(UPDATE_FREQUENCY), Update);
         }
 
         private bool Update()
         {
             Console.WriteLine($"[App::Update] {state}");
-            switch (state)
+            float counter = counterViewModel.Counter;
+            counter -= 0.1f;
+            counterViewModel.Counter = counter;
+            if (counter < 0)
             {
-                case State.Starting:
-                    {
-                        int counter = int.Parse(counterViewModel.Counter);
-                        counter -= 1;
-                        counterViewModel.Counter = counter.ToString();
-                        if (counter == -1)
+                switch (state)
+                {
+                    case State.Starting:
+                        state = timerModel.startWithExcentric ? State.Excentric : State.Concentric;
+                        counterViewModel.Title = timerModel.startWithExcentric ? "Excentric" : "Concentric";
+                        counterViewModel.Counter = timerModel.startWithExcentric ? timerModel.excentricDuration : timerModel.concentricDuration;
+                        break;
+                    case State.Pause:
+                        state = postPauseState;
+                        counterViewModel.Title = state.ToString();
+                        counterViewModel.Counter = (state == State.Excentric ? (int)timerModel.excentricDuration : (int)timerModel.concentricDuration);
+                        break;
+                    case State.Concentric:
+                    case State.Excentric:
+                        if (timerModel.startWithExcentric && state == State.Concentric || !timerModel.startWithExcentric && state == State.Excentric)
                         {
-                            state = State.Excentric;
-                            counterViewModel.Title = "Excentric";
-                            counterViewModel.Counter = $"{timerModel.excentricDuration}";
-                            Device.StartTimer(TimeSpan.FromSeconds(0.1), Update);
+                            repetitions -= 1;
+                        }
+                        if (repetitions == 0)
+                        {
+                            MainPage.Navigation.PopModalAsync();
                             return false;
                         }
-                    }
-                    return true;
-                case State.Pause:
-                    state = postPauseState;
-                    counterViewModel.Title = state.ToString();
-                    counterViewModel.Counter = $"{(state == State.Excentric ? (int)timerModel.excentricDuration : (int)timerModel.concentricDuration)}";
-                    Device.StartTimer(TimeSpan.FromSeconds(0.1), Update);
-                    return false;
-                case State.Concentric:
-                case State.Excentric:
-                    {
-                        float counter = float.Parse(counterViewModel.Counter);
-                        counter -= 0.1f;
-                        counterViewModel.Counter = counter.ToString();
-                        if (counter < 0)
+                        if (timerModel.startWithExcentric && state == State.Excentric || !timerModel.startWithExcentric && state == State.Concentric)
                         {
                             postPauseState = state == State.Concentric ? State.Excentric : State.Concentric;
                             counterViewModel.Title = "Pause";
-                            counterViewModel.Counter = "";
-                            repetitions -= state == State.Concentric ? 1 : 0;
-                            if (repetitions == 0)
-                            {
-                                MainPage.Navigation.PopModalAsync();
-                                return false;
-                            }
+                            counterViewModel.Counter = timerModel.pauseDuration;
                             state = State.Pause;
-                            Device.StartTimer(TimeSpan.FromSeconds(timerModel.pauseDuration), Update);
-                            return false;
                         }
-                    }
-                    return true;
+                        else
+                        {
+                            state = state == State.Concentric ? State.Excentric : State.Concentric;
+                            counterViewModel.Title = state.ToString();
+                            counterViewModel.Counter = state == State.Concentric ? timerModel.concentricDuration : timerModel.excentricDuration;
+                        }
+                        break;
+                }
             }
-            return false;
+            return true;
         }
     }
 }
