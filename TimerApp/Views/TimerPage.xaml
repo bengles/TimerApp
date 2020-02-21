@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
+             xmlns:local="clr-namespace:TimerApp;assembly=TimerApp"
              x:Class="TimerApp.Views.TimerInputPage">
     <ContentPage.Resources>
         <Style x:Key="EntryLabel" TargetType="Label">
             <Setter Property="FontFamily" Value="{StaticResource NormalFont}"/>
-            <Setter Property="TextColor" Value="Gray" />
+            <Setter Property="TextColor" Value="#D5D5D5" />
             <Setter Property="FontSize" Value="16" />
             <Setter Property="VerticalTextAlignment" Value="Center"/>
             <Setter Property="HorizontalTextAlignment" Value="Start"/>
@@ -67,7 +67,7 @@
                     Style="{StaticResource EntryLabel}"
                     Text="Excentric duration"
                 />
-                <Entry 
+                <Entry
                     Style="{StaticResource EntryField}"
                     Text="{Binding ExcentricDuration}"
                     Placeholder="Enter excentric duration"
